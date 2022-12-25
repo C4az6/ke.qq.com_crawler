@@ -1,6 +1,7 @@
 const { startProcess, qiniuUpload } = require('../libs/utils'),
   { addSliderData } = require('../services/Slider'),
   { addAgencyInfo } = require('../services/AgencyInfo'),
+  { addRecomCourse } = require('../services/RecomCourse'),
   config = require('../config/config')
 
 /* 爬虫类 */
@@ -102,6 +103,14 @@ class Crawler {
               });
               if (posterData.key) {
                 item.posterKey = posterData.key;
+              }
+
+              // 插入数据
+              const result = await addRecomCourse(item);
+              if (result) {
+                console.log("DATA CREATE OK.");
+              } else {
+                console.log("DATA CREATE FAIL!!!!!")
               }
             } catch (error) {
               console.log("error: ", error);

@@ -1,8 +1,10 @@
 // 模型文件的统一出口
 const Slider = require('./slider'),
-  AgencyInfo = require('./AgencyInfo')
+  AgencyInfo = require('./agencyInfo'),
+  RecomCourse = require('./recomCourse')
 
 module.exports = {
   Slider,
-  AgencyInfo
+  AgencyInfo,
+  RecomCourse
 }
