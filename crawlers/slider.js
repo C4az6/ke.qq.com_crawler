@@ -1,7 +1,8 @@
-const crawler = require('../libs/crawler');
+const Crawler = require('../libs/crawler'),
+  { crawler } = require('../config/config')
 
-crawler({
-  url: 'https://msiwei.ke.qq.com/',
+Crawler({
+  url: crawler.url.main,
   callback() {
     const elements = document.querySelectorAll('.rotation-chart-item-img'),
       data = [];

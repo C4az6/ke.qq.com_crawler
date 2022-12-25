@@ -5,5 +5,6 @@ const router = require('koa-router')(),
 router.prefix('/crawler');
 // 这里的crawlerController是Crawler类的实例对象，因此可以直接调用实例方法
 router.get('/crawl_slider_data', crawlerController.crawlSliderData);
+router.get('/crawl_agency_info', crawlerController.crawlAgencyInfo);
 
 module.exports = router

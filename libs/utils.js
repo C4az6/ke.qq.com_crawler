@@ -1,8 +1,9 @@
 // 这是一个Node.js内置的模块，用来创建子进程
 const cp = require('child_process'),
   { resolve } = require('path'),
-  Qiniu = require('qiniu');
-const { nanoid } = require('nanoid');
+  Qiniu = require('qiniu'),
+  { qiniu } = require('../config/config'),
+  { nanoid } = require('nanoid');
 
 
 module.exports = {
@@ -36,7 +37,7 @@ module.exports = {
   },
   // 上传图片到七牛云
   qiniuUpload(options) {
-    const mac = new Qiniu.auth.digest.Mac(options.ak, options.sk),
+    const mac = new Qiniu.auth.digest.Mac(qiniu.keys.ak, qiniu.keys.sk),
       conf = new Qiniu.conf.Config(),
       client = new Qiniu.rs.BucketManager(mac, conf),
       key = nanoid() + options.ext;

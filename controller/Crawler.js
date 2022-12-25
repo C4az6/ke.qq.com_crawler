@@ -10,14 +10,12 @@ class Crawler {
       path: '../crawlers/slider',
       async message(data) {
         data.map(async item => {
-          if (item.imgUrl && !item.img_key) {
+          if (item.imgUrl && !item.imgKey) {
             const qiniu = config.qiniu;
             try {
               const imgData = await qiniuUpload({
                 url: item.imgUrl,
                 bucket: qiniu.bucket.tximg.bucket_name,
-                ak: qiniu.keys.ak,
-                sk: qiniu.keys.sk,
                 ext: '.jpg'
               });
               if (imgData.key) {
@@ -38,6 +36,37 @@ class Crawler {
           }
           console.log("crawler data: ", data);
         });
+      },
+      async exit(code) {
+        console.log(code);
+      },
+      async error(error) {
+        console.log(error);
+      }
+    })
+  }
+  // 爬取机构信息数据
+  crawlAgencyInfo() {
+    startProcess({
+      path: '../crawlers/agencyInfo.js',
+      async message(data) {
+        if (data.logoUrl && !data.logoKey) {
+          const qiniu = config.qiniu
+          try {
+            const logoData = await qiniuUpload({
+              url: data.logoUrl,
+              bucket: qiniu.bucket.tximg.bucket_name,
+              ext: '.jpg'
+            });
+            if (logoData.key) {
+              data.logoKey = logoData.key;
+            };
+            console.log("logoData: ", logoData);
+          } catch (error) {
+            console.log("error: ", error);
+          }
+        }
+
       },
       async exit(code) {
         console.log(code);

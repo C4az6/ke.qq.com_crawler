@@ -1,4 +1,3 @@
-// 七牛相关配置
 module.exports = {
   qiniu: {
     keys: {
@@ -10,6 +9,13 @@ module.exports = {
         bucket_name: "alexander3714",
         domain: "http://rnf9v5q2r.bkt.gdipper.com/"
       }
+    }
+  },
+  crawler: {
+    url: {
+      main: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_recommend&catagoryId=gen_20690",
+      course: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_course&catagoryId=gen_20690",
+      teacher: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_teacher&catagoryId=gen_20690"
     }
   }
 }
