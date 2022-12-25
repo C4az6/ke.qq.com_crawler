@@ -85,6 +85,40 @@ class Crawler {
       }
     })
   }
+  // 爬取推荐课程数据
+  crawlRecomCourse() {
+    startProcess({
+      path: '../crawlers/recomCourse.js',
+      async message(data) {
+        data.map(async item => {
+          if (item.posterUrl && !item.posterKey) {
+            const qiniu = config.qiniu
+            try {
+              // 上传课程封面
+              const posterData = await qiniuUpload({
+                url: item.posterUrl,
+                bucket: qiniu.bucket.tximg.bucket_name,
+                ext: '.jpg'
+              });
+              if (posterData.key) {
+                item.posterKey = posterData.key;
+              }
+            } catch (error) {
+              console.log("error: ", error);
+            }
+          }
+          console.log("data: ", data);
+        })
+
+      },
+      async exit(code) {
+        console.log(code);
+      },
+      async error(error) {
+        console.log(error);
+      }
+    })
+  }
 }
 
 module.exports = new Crawler();

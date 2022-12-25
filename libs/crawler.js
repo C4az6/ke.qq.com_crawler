@@ -17,7 +17,7 @@ module.exports = async function (options) {
   // pg.evaluate用来分析页面
   const result = await pg.evaluate(options.callback);
   // 关闭浏览器
-  await bs.close();
+  // await bs.close();
   // 给主进程发送数据
   process.send(result);
 
