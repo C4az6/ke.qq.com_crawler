@@ -1,5 +1,6 @@
 const { startProcess, qiniuUpload } = require('../libs/utils'),
   { addSliderData } = require('../services/Slider'),
+  { addAgencyInfo } = require('../services/AgencyInfo'),
   config = require('../config/config')
 
 /* 爬虫类 */
@@ -62,6 +63,14 @@ class Crawler {
               data.logoKey = logoData.key;
             };
             console.log("logoData: ", logoData);
+
+            // 插入数据
+            const result = await addAgencyInfo(data);
+            if (result) {
+              console.log("DATA CREATE OK.");
+            } else {
+              console.log("DATA CREATE FAIL!!!!!")
+            }
           } catch (error) {
             console.log("error: ", error);
           }
