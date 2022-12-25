@@ -1,3 +1,4 @@
+// 七牛相关配置
 module.exports = {
   qiniu: {
     keys: {
