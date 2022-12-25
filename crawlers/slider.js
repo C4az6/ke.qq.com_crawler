@@ -8,7 +8,8 @@ crawler({
 
     elements.forEach(item => {
       data.push({
-        imgUrl: item.src
+        imgUrl: item.src,
+        imgKey: ''
       })
     });
     return data;
