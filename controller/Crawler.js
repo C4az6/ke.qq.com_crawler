@@ -1,4 +1,5 @@
 const { startProcess, qiniuUpload } = require('../libs/utils'),
+  { addSliderData } = require('../services/Slider'),
   config = require('../config/config')
 
 /* 爬虫类 */
@@ -22,6 +23,15 @@ class Crawler {
               if (imgData.key) {
                 item.imgKey = imgData.key;
               };
+
+              // 插入数据
+              const result = await addSliderData(item);
+              if (result) {
+                console.log("Data create OK")
+              } else {
+                console.log("Data create Faild");
+              }
+
             } catch (error) {
               console.log("error: ", error);
             }

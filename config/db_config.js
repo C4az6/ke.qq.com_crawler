@@ -14,6 +14,6 @@ module.exports = {
         idle: 10000
       }
     },
-    conf: ['todos', 'root', 'root']
+    conf: ['txclass', 'root', 'root']
   }
 }

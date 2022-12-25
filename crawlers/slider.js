@@ -5,9 +5,11 @@ crawler({
   callback() {
     const elements = document.querySelectorAll('.rotation-chart-item-img'),
       data = [];
-
-    elements.forEach(item => {
+    const cids = [1, 2]
+    elements.forEach((item, index) => {
       data.push({
+        cid: cids[index],
+        href: "https://youkewang.top/",
         imgUrl: item.src,
         imgKey: ''
       })
