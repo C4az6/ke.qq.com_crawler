@@ -28,6 +28,12 @@ const Slider = seq.define('slider', {
     type: STRING,
     allowNull: false
   },
+  // 课程标题
+  title: {
+    comment: 'course title',
+    type: STRING,
+    allowNull: false
+  },
   // 课程状态
   status: {
     comment: 'course status',

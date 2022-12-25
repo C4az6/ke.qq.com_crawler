@@ -10,6 +10,7 @@ crawler({
       data.push({
         cid: cids[index],
         href: "https://youkewang.top/",
+        title: "前端开发工程师进阶课程",
         imgUrl: item.src,
         imgKey: ''
       })
