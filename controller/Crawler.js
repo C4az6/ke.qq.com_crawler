@@ -3,6 +3,7 @@ const { startProcess, qiniuUpload } = require('../libs/utils'),
   { addAgencyInfo } = require('../services/AgencyInfo'),
   { addRecomCourse } = require('../services/RecomCourse'),
   { addCollectionCourse } = require('../services/CollectionCourse'),
+  { addTeacherData } = require('../services/Teacher'),
   config = require('../config/config')
 
 /* 爬虫类 */
@@ -192,12 +193,12 @@ class Crawler {
               }
 
               // 插入数据
-              /* const result = await addCollectionCourse(item);
+              const result = await addTeacherData(item);
               if (result) {
                 console.log("DATA CREATE OK");
               } else {
                 console.log("ERROR!!! DATA CREATE FAILD");
-              } */
+              }
 
             } catch (error) {
               console.log("error: ", error);
