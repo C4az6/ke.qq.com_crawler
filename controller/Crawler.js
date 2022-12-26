@@ -171,6 +171,49 @@ class Crawler {
       }
     })
   }
+  // 爬取老师信息
+  crawlTeacher() {
+    startProcess({
+      path: '../crawlers/teacher.js',
+      async message(data) {
+        data.map(async item => {
+          if (item.teacherImg && !item.teacherImgKey) {
+            // 如果图片存在并且没有上传到七牛云，那么执行上传操作
+            const qiniu = config.qiniu;
+            try {
+              const teacherData = await qiniuUpload({
+                url: item.teacherImg,
+                bucket: qiniu.bucket.tximg.bucket_name,
+                ext: '.jpg'
+              });
+              if (teacherData.key) {
+                item.teacherImgKey = teacherData.key;
+                console.log("teacherData.key: ", teacherData.key);
+              }
+
+              // 插入数据
+              /* const result = await addCollectionCourse(item);
+              if (result) {
+                console.log("DATA CREATE OK");
+              } else {
+                console.log("ERROR!!! DATA CREATE FAILD");
+              } */
+
+            } catch (error) {
+              console.log("error: ", error);
+            }
+          }
+        })
+        console.log("process receive data: ", data);
+      },
+      async exit(code) {
+        console.log("process exit code: ", code)
+      },
+      async error(error) {
+        console.log("process error: ", error)
+      }
+    })
+  }
 }
 
 module.exports = new Crawler();
