@@ -4,6 +4,7 @@ const { startProcess, qiniuUpload } = require('../libs/utils'),
   { addRecomCourse } = require('../services/RecomCourse'),
   { addCollectionCourse } = require('../services/CollectionCourse'),
   { addTeacherData } = require('../services/Teacher'),
+  { addCourseTabData } = require('../services/CourseTab'),
   config = require('../config/config')
 
 /* 爬虫类 */
@@ -203,6 +204,30 @@ class Crawler {
             } catch (error) {
               console.log("error: ", error);
             }
+          }
+        })
+        console.log("process receive data: ", data);
+      },
+      async exit(code) {
+        console.log("process exit code: ", code)
+      },
+      async error(error) {
+        console.log("process error: ", error)
+      }
+    })
+  }
+  // 爬取课程分类
+  crawlCourseTab() {
+    startProcess({
+      path: '../crawlers/courseTab.js',
+      async message(data) {
+        data.map(async item => {
+          // 插入数据
+          const result = await addCourseTabData(item);
+          if (result) {
+            console.log("DATA CREATE OK");
+          } else {
+            console.log("ERROR!!! DATA CREATE FAILD");
           }
         })
         console.log("process receive data: ", data);

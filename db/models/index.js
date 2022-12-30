@@ -2,13 +2,15 @@
 const Slider = require('./slider'),
   AgencyInfo = require('./agencyInfo'),
   RecomCourse = require('./recomCourse'),
-  CollectionCourse = require('./CollectionCourse')
-Teacher = require('./teacher')
+  CollectionCourse = require('./CollectionCourse'),
+  Teacher = require('./teacher'),
+  CourseTab = require('./courseTab')
 
 module.exports = {
   Slider,
   AgencyInfo,
   RecomCourse,
   CollectionCourse,
-  Teacher
+  Teacher,
+  CourseTab
 }
