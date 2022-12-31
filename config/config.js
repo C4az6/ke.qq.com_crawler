@@ -14,8 +14,9 @@ module.exports = {
   crawler: {
     url: {
       main: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_recommend&catagoryId=gen_20690",
-      course: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_course&catagoryId=gen_20690",
-      teacher: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_teacher&catagoryId=gen_20690"
+      course: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_course",
+      teacher: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_teacher&catagoryId=gen_20690",
+      aboutus: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_introduction"
     }
   }
 }

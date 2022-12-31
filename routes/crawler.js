@@ -11,5 +11,7 @@ router.get('/crawl_collection_course', crawlerController.crawlCollectionCourse);
 router.get('/crawl_teacher', crawlerController.crawlTeacher);
 router.get('/crawl_course_tab', crawlerController.crawlCourseTab);
 router.get('/crawl_course_category', crawlerController.crawlCourseCategory);
+router.get('/crawl_course_data', crawlerController.crawlCourseData);
+// router.get('/crawl_course_aboutus', crawlerController.crawlAboutUs);
 
 module.exports = router

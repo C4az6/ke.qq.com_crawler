@@ -6,7 +6,8 @@ const { startProcess, qiniuUpload } = require('../libs/utils'),
   { addTeacherData } = require('../services/Teacher'),
   { addCourseTabData } = require('../services/CourseTab'),
   { addCourseCategoryData } = require('../services/CourseCategory'),
-  config = require('../config/config')
+  { addCourseData } = require('../services/Course.js'),
+  config = require('../config/config');
 
 /* 爬虫类 */
 class Crawler {
@@ -262,6 +263,48 @@ class Crawler {
       },
       async error(error) {
         console.log("process error: ", error)
+      }
+    })
+  }
+
+  // 爬取所有课程数据
+  crawlCourseData() {
+    startProcess({
+      path: '../crawlers/course.js',
+      async message(data) {
+        data.map(async item => {
+          if (item.posterUrl && !item.posterKey) {
+            const qiniu = config.qiniu
+            try {
+              // 上传课程封面
+              const posterData = await qiniuUpload({
+                url: item.posterUrl,
+                bucket: qiniu.bucket.tximg.bucket_name,
+                ext: '.jpg'
+              });
+              if (posterData.key) {
+                item.posterKey = posterData.key;
+              }
+
+              // 插入数据
+              const result = await addCourseData(item);
+              if (result) {
+                console.log("DATA CREATE OK.");
+              } else {
+                console.log("DATA CREATE FAIL!!!!!")
+              }
+            } catch (error) {
+              console.log("error: ", error);
+            }
+          }
+        })
+
+      },
+      async exit(code) {
+        console.log(code);
+      },
+      async error(error) {
+        console.log(error);
       }
     })
   }
