@@ -28,7 +28,12 @@ class AdminService {
     if (password !== dbPassword) {
       return 10004
     }
-    return 0
+
+    const uid = usernameExist.get('id');
+    return {
+      uid,
+      username
+    }
   }
 }
 

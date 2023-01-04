@@ -47,10 +47,8 @@ class Admin {
       ctx.body = returnInfo(LOGIN.PASSWORD_ERROR);
       return
     }
-    if (result === 0) {
-      // 登录成功，添加SESSION到返回的数据对象中
-      ctx.body = returnInfo(LOGIN.SUCCESS)
-    }
+    // 登录成功，添加SESSION到返回的数据对象中
+    ctx.body = returnInfo(LOGIN.SUCCESS, result)
 
   }
 }
