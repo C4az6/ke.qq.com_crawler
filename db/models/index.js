@@ -7,7 +7,8 @@ const Slider = require('./slider'),
   CourseTab = require('./courseTab'),
   CourseCategory = require('./courseCategory'),
   Course = require('./course'),
-  Aboutus = require('./aboutus')
+  Aboutus = require('./aboutus'),
+  Admin = require('./admin');
 
 module.exports = {
   Slider,
@@ -18,5 +19,6 @@ module.exports = {
   CourseTab,
   CourseCategory,
   Course,
-  Aboutus
+  Aboutus,
+  Admin
 }

@@ -32,5 +32,10 @@ module.exports = {
   },
   redisInfo: {
     all: `${REDIS_CONF[1]}:${REDIS_CONF[0]}`
-  }
+  },
+  adminInfo: {
+    username: 'admin',
+    password: 'admin'
+  },
+  cryptoSecret: 'SHDSJ@##@dsajdjksa!ds32213'
 }

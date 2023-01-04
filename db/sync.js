@@ -10,8 +10,8 @@ seq.authenticate().then(res => {
 
 
 seq.sync({
-  // 强制同步
-  force: true
+  // 强制同步,会清空其他的表数据
+  // force: true
 }).then(res => {
   console.log('数据库表同步成功~');
   // 关闭进程

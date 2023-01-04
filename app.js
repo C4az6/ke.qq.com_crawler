@@ -12,6 +12,7 @@ const { sessionInfo, cookieInfo, redisInfo } = require('./config/config')
 
 const crawlerRouter = require('./routes/crawler');
 const indexRouter = require('./routes/index');
+const adminRouter = require('./routes/admin')
 
 // error handler
 onerror(app)
@@ -50,6 +51,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(crawlerRouter.routes(), crawlerRouter.allowedMethods());
 app.use(indexRouter.routes(), crawlerRouter.allowedMethods());
+app.use(adminRouter.routes(), adminRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
