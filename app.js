@@ -5,9 +5,15 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const session = require('koa-generic-session');
+const koaRedis = require('koa-redis');
 
-const crawler = require('./routes/crawler')
+const { sessionInfo, cookieInfo, redisInfo } = require('./config/config')
 
+const crawlerRouter = require('./routes/crawler');
+const indexRouter = require('./routes/index');
+
+console.log(">>>>>>>>>>>: process.env: ", 'NODE_ENV' in process.env);
 
 // error handler
 onerror(app)
@@ -20,8 +26,19 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-  extension: 'pug'
+
+// 配置模版引擎为ejs
+app.use(views(__dirname + '/views'), {
+  extends: 'ejs'
+})
+
+app.keys = sessionInfo.keys
+
+app.use(session({
+  key: sessionInfo.name,
+  prefix: sessionInfo.prefix,
+  cookie: cookieInfo,
+  store: koaRedis(redisInfo)
 }))
 
 // logger
@@ -33,7 +50,8 @@ app.use(async (ctx, next) => {
 })
 
 // routes
-app.use(crawler.routes(), crawler.allowedMethods())
+app.use(crawlerRouter.routes(), crawlerRouter.allowedMethods());
+app.use(indexRouter.routes(), crawlerRouter.allowedMethods());
 
 // error-handling
 app.on('error', (err, ctx) => {

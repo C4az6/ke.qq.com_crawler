@@ -1,3 +1,5 @@
+const { REDIS_CONF } = require('../config/db_config')
+console.log(">>>>>>>>> REDIS_CONF: ", REDIS_CONF);
 module.exports = {
   qiniu: {
     keys: {
@@ -18,5 +20,18 @@ module.exports = {
       teacher: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_teacher&catagoryId=gen_20690",
       aboutus: "https://msiwei.ke.qq.com/?tuin304a784b=&activeTab=head_introduction"
     }
+  },
+  sessionInfo: {
+    keys: ['c1!s2@d3#f4$+g5%h6^'],   // cookie的加密字符串,随便填写
+    name: 'txclass.sid',    // cookie的名称 格式: 项目名.sid
+    prefix: 'txclass.sess'  // cookie的前缀 格式: 项目名.sess
+  },
+  cookieInfo: {
+    path: '/',  // cookie下发路径
+    httpOnly: true, // 是否不允许修改
+    maxAge: 24 * 60 * 60 * 1000 // 最大过期时间,这里是1天
+  },
+  redisInfo: {
+    all: `${REDIS_CONF[1]}:${REDIS_CONF[0]}`
   }
 }

@@ -1,6 +1,8 @@
+const ENV = require('./env_config');
+console.log(">>>>>>>>> ENV ", ENV);
 // database相关配置
 module.exports = {
-  mysql: {
+  MYSQL_CONF: {
     base: {
       host: 'localhost',
       dialect: 'mysql',
@@ -14,6 +16,8 @@ module.exports = {
         idle: 10000
       }
     },
-    conf: ['txclass', 'root', 'root']
-  }
+    conf: ['txclass', 'root', ENV.isPrd ? 'xxx' : 'root']
+  },
+  // Redis 配置
+  REDIS_CONF: ['6379', '127.0.0.1']
 }
