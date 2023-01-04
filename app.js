@@ -13,8 +13,6 @@ const { sessionInfo, cookieInfo, redisInfo } = require('./config/config')
 const crawlerRouter = require('./routes/crawler');
 const indexRouter = require('./routes/index');
 
-console.log(">>>>>>>>>>>: process.env: ", 'NODE_ENV' in process.env);
-
 // error handler
 onerror(app)
 

@@ -1,5 +1,4 @@
 const { REDIS_CONF } = require('../config/db_config')
-console.log(">>>>>>>>> REDIS_CONF: ", REDIS_CONF);
 module.exports = {
   qiniu: {
     keys: {

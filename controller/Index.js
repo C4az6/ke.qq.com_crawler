@@ -1,6 +1,8 @@
+const { redisGet, redisSet } = require('../libs/redisClient')
+
 class Index {
   async index(ctx, next) {
-    console.log("ctx: ", ctx.session);
+    // console.log("ctx: ", ctx.session);
     const sess = ctx.session;
     if (!sess.uid) {
       // session不存在

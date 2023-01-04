@@ -1,5 +1,5 @@
 const ENV = require('./env_config');
-console.log(">>>>>>>>> ENV ", ENV);
+// console.log(">>>>>>>>> ENV ", ENV);
 // database相关配置
 module.exports = {
   MYSQL_CONF: {
