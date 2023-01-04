@@ -67,8 +67,21 @@ function makeCrypto(str) {
   return _md5.update(content).digest('hex');
 }
 
+function trimSpace(str) {
+  return str.replace(/\s+/g, '');
+}
+
+function returnInfo(errorInfo, data) {
+  if (data) {
+    errorInfo.data = data;
+  }
+  return errorInfo
+}
+
 module.exports = {
   startProcess,
   qiniuUpload,
-  makeCrypto
+  makeCrypto,
+  returnInfo,
+  trimSpace
 }
