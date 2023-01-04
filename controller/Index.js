@@ -1,5 +1,5 @@
-const { redisGet, redisSet } = require('../libs/redisClient')
-
+const { redisGet, redisSet } = require('../libs/redisClient');
+const { getCourses } = require('../services/Course')
 class Index {
   async index(ctx, next) {
     // console.log("ctx: ", ctx.session);
@@ -17,6 +17,23 @@ class Index {
     }
 
     // await ctx.render('index.ejs')
+  }
+
+  async getCourseData(ctx, next) {
+    const data = await getCourses();
+    ctx.body = data
+  }
+
+  async getTeacherData(ctx, next) {
+
+  }
+
+  async getCourseDatas(ctx, next) {
+
+  }
+
+  async getTeacherDatas(ctx, next) {
+
   }
 }
 

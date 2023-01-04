@@ -7,8 +7,9 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-generic-session');
 const koaRedis = require('koa-redis');
+const cors = require('koa2-cors');
 
-const { sessionInfo, cookieInfo, redisInfo } = require('./config/config')
+const { sessionInfo, cookieInfo, redisInfo, corsOrigin } = require('./config/config')
 
 const crawlerRouter = require('./routes/crawler');
 const indexRouter = require('./routes/index');
@@ -16,6 +17,13 @@ const adminRouter = require('./routes/admin')
 
 // error handler
 onerror(app)
+
+// Koa cors
+app.use(cors({
+  origin: function (ctx) {
+    return corsOrigin
+  }
+}))
 
 // middlewares
 app.use(bodyparser({

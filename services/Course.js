@@ -14,6 +14,11 @@ class CourseService {
       return await CourseModel.create(data);
     }
   }
+
+  async getCourses() {
+    // findAll 查询所有数据, 注意：返回的是一个Promise对象，外面也要通过 await 来接收
+    return await CourseModel.findAll();
+  }
 }
 
 module.exports = new CourseService();

@@ -1,4 +1,5 @@
-const { REDIS_CONF } = require('../config/db_config')
+const { REDIS_CONF } = require('../config/db_config');
+const { isPrd } = require('./env_config')
 module.exports = {
   qiniu: {
     keys: {
@@ -37,5 +38,7 @@ module.exports = {
     username: 'admin',
     password: 'admin'
   },
-  cryptoSecret: 'SHDSJ@##@dsajdjksa!ds32213'
+  cryptoSecret: 'SHDSJ@##@dsajdjksa!ds32213',
+  // 允许跨域的来源配置
+  corsOrigin: isPrd ? 'http://youkewang.top' : 'http://localhost:3001'
 }
