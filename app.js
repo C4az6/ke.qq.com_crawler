@@ -22,7 +22,9 @@ onerror(app)
 app.use(cors({
   origin: function (ctx) {
     return corsOrigin
-  }
+  },
+  // 跨域设置cookie
+  credentials: true
 }))
 
 // middlewares

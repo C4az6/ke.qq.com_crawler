@@ -22,6 +22,14 @@ module.exports = {
       error_code: 10005,
       error_msg: 'Invalid Operation'
     },
+    NOT_LOGIN_STATUS: {
+      error_code: 10006,
+      error_msg: '未登录'
+    },
+    LOGIN_STATUS: {
+      error_code: 10007,
+      error_msg: '已登录'
+    },
     SUCCESS: {
       error_code: 0,
       error_msg: '登录成功'

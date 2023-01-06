@@ -17,6 +17,7 @@ class Admin {
     }
   }
 
+  // 用户登录
   async loginAction(ctx, next) {
     // 获取前端POST传递过来的参数
     const { username, password } = ctx.request.body;
@@ -47,9 +48,27 @@ class Admin {
       ctx.body = returnInfo(LOGIN.PASSWORD_ERROR);
       return
     }
-    // 登录成功，添加SESSION到返回的数据对象中
-    ctx.body = returnInfo(LOGIN.SUCCESS, result)
 
+    if (!ctx.session.userInfo) {
+      // 设置session
+      ctx.session.userInfo = result;
+      console.log(">>>>>>>>>> 设置session: ", ctx.session.userInfo);
+    }
+
+    // 登录成功，添加SESSION到返回的数据对象中
+    ctx.body = returnInfo(LOGIN.SUCCESS)
+  }
+
+  // 获取登录状态
+  async login_check(ctx, next) {
+    console.log("========= ", ctx.session);
+    if (ctx.session && ctx.session.userInfo) {
+      // 已登录
+      ctx.body = returnInfo(LOGIN.LOGIN_STATUS);
+      return;
+    }
+    // 未登录
+    ctx.body = returnInfo(LOGIN.NOT_LOGIN_STATUS)
   }
 }
 
