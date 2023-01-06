@@ -23,7 +23,6 @@ class AdminService {
     if (!usernameExist) {
       return 10003
     }
-    console.log('查询出来的userinfo数据: ', usernameExist);
     const dbPassword = usernameExist.get('password');
     if (password !== dbPassword) {
       return 10004

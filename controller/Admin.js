@@ -11,9 +11,9 @@ class Admin {
     adminInfo.password = makeCrypto(adminInfo.password);
     const result = await addAdminData(adminInfo);
     if (result) {
-      console.log(0);
+      console.log('create admin account success.');
     } else {
-      console.log(1);
+      console.log('create admin failed!!!');
     }
   }
 
@@ -52,7 +52,6 @@ class Admin {
     if (!ctx.session.userInfo) {
       // 设置session
       ctx.session.userInfo = result;
-      console.log(">>>>>>>>>> 设置session: ", ctx.session.userInfo);
     }
 
     // 登录成功，添加SESSION到返回的数据对象中
@@ -61,11 +60,9 @@ class Admin {
 
   // 获取登录状态
   async login_check(ctx, next) {
-    console.log("========= ", ctx.session);
     if (ctx.session && ctx.session.userInfo) {
       // 已登录
-      ctx.body = returnInfo(LOGIN.LOGIN_STATUS);
-      return;
+      return (ctx.body = returnInfo(LOGIN.LOGIN_STATUS));
     }
     // 未登录
     ctx.body = returnInfo(LOGIN.NOT_LOGIN_STATUS)

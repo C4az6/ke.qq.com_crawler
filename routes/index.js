@@ -1,11 +1,11 @@
-const router = require('koa-router')(),
-  indexController = require('../controller/Index');
+const router = require('koa-router')();
+const indexController = require('../controller/Index');
+const loginCheck = require('../middlewares/loginCheck')
 
-// router.get('/', indexController.index);
-router.get('/get_course', indexController.getCourseData)
-router.get('/get_teachers', indexController.getTeacherData);
-
-router.get('/get_course_data', indexController.getCourseDatas);
-router.get('/get_teacher_data', indexController.getTeacherDatas);
+/* 
+  使用loginCheck中间件进行接口的登录鉴权。
+  意味着访问命中这条路由后先执行loginCheck中间件方法，如果loginCheck中调用next函数,才会执行indexController.getCourses。
+*/
+router.get('/get_courses', loginCheck, indexController.getCourses)
 
 module.exports = router

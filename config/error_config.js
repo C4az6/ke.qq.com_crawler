@@ -38,5 +38,16 @@ module.exports = {
       error_code: 0,
       error_msg: '登录成功'
     }
+  },
+  // 对数据CRUD的API模块
+  API: {
+    RETURN_SUCCESS: {
+      error_code: 0,
+      error_msg: 'ok'
+    },
+    RETURN_FAILED: {
+      error_code: 20001,
+      error_msg: 'error'
+    }
   }
 }

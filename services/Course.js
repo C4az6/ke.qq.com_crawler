@@ -15,9 +15,14 @@ class CourseService {
     }
   }
 
-  async getCourses() {
+  async getCoursesData() {
     // findAll 查询所有数据, 注意：返回的是一个Promise对象，外面也要通过 await 来接收
-    return await CourseModel.findAll();
+    return await CourseModel.findAll({
+      attributes: {
+        // 配置忽略的字段
+        exclude: ['posterUrl', 'createdAt', 'updatedAt']
+      }
+    });
   }
 }
 
