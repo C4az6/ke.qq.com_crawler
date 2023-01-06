@@ -6,6 +6,7 @@ const router = require('koa-router')(),
 router.prefix('/admin');
 // router.get('/createAdmin', adminController.createAdmin);
 router.post('/login_action', adminController.loginAction);
-router.get('/login_check', adminController.login_check)
+router.get('/login_check', adminController.login_check);
+router.get('/logout_action', adminController.logout_action)
 
 module.exports = router;

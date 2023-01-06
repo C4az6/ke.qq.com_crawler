@@ -70,6 +70,12 @@ class Admin {
     // 未登录
     ctx.body = returnInfo(LOGIN.NOT_LOGIN_STATUS)
   }
+  // 用户退出登录
+  async logout_action(ctx, next) {
+    // 删除用户session的userInfo就可以实现退出登录了
+    delete ctx.session.userInfo;
+    ctx.body = returnInfo(LOGIN.LOGOUT_SUCCESS);
+  }
 }
 
 module.exports = new Admin;

@@ -30,6 +30,10 @@ module.exports = {
       error_code: 10007,
       error_msg: '已登录'
     },
+    LOGOUT_SUCCESS: {
+      error_code: 0,
+      error_msg: '退出登录成功'
+    },
     SUCCESS: {
       error_code: 0,
       error_msg: '登录成功'
