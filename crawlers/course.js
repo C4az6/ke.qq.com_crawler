@@ -16,8 +16,7 @@ Crawler({
         courseName: item.querySelector('.kc-course-card-header---HluDHk > .kc-course-card-name---QUOvPQ').textContent,
         price: priceText === '免费' ? '0' : priceText.replace(/￥/, ''),
         studentCount: item.querySelectorAll('.kc-course-card-footer-info---iNSdzI > span')[1].textContent.replace(/人报名/, ''),
-        courseSectionCount: item.querySelector('.kc-course-card-tag---Et_Va3.kc-course-card-tag-chapter---BvIeIq').textContent,
-        field: -1
+        courseSectionCount: item.querySelector('.kc-course-card-tag---Et_Va3.kc-course-card-tag-chapter---BvIeIq').textContent
       })
     })
     return data;
