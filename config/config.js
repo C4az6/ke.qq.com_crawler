@@ -36,7 +36,7 @@ module.exports = {
   },
   adminInfo: {
     username: 'admin',
-    password: 'admin'
+    password: '123456'
   },
   cryptoSecret: 'SHDSJ@##@dsajdjksa!ds32213',
   // 允许跨域的来源配置
