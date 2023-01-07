@@ -56,6 +56,14 @@ module.exports = {
     CHANGE_COURSE_FIELD_FAILED: {
       error_code: 20002,
       error_msg: '修改课程分类失败'
+    },
+    CHANGE_COURSE_STATUS_SUCCESS: {
+      error_code: 0,
+      error_msg: '修改课程状态成功'
+    },
+    CHANGE_COURSE_STATUS_FAILED: {
+      error_code: 20003,
+      error_msg: '修改课程状态失败'
     }
   }
 }

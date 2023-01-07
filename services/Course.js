@@ -31,6 +31,14 @@ class CourseService {
     });
     return ret[0]
   }
+
+  async changeCourseStatus(cid, status) {
+    // result是执行SQL后的返回结果，是一个数组，第一位是表示影响了多少行，如果是0表示更新没有成功
+    const result = await CourseModel.update({ status }, {
+      where: { cid }
+    })
+    return result[0]
+  }
 }
 
 module.exports = new CourseService();
