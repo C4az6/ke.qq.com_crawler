@@ -24,6 +24,13 @@ class CourseService {
       }
     });
   }
+
+  async changeCourseField(cid, field) {
+    const ret = await CourseModel.update({ field }, {
+      where: { cid }
+    });
+    return ret[0]
+  }
 }
 
 module.exports = new CourseService();

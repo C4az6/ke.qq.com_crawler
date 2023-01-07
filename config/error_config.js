@@ -48,6 +48,14 @@ module.exports = {
     RETURN_FAILED: {
       error_code: 20001,
       error_msg: 'error'
+    },
+    CHANGE_COURSE_FIELD_SUCCESS: {
+      error_code: 0,
+      error_msg: '修改课程分类成功'
+    },
+    CHANGE_COURSE_FIELD_FAILED: {
+      error_code: 20002,
+      error_msg: '修改课程分类失败'
     }
   }
 }
