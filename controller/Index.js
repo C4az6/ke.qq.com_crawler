@@ -2,6 +2,7 @@ const { getCoursesData, changeCourseField, changeCourseStatus } = require('../se
 const { getCourseFieldData } = require('../services/CourseTab');
 const { getRecomCourseData, changeRecomCourseStatusData } = require('../services/RecomCourse');
 const { getSliderData, changeSliderStatusData } = require('../services/Slider')
+const { getCollectionData, changeCollectionStatus } = require('../services/CollectionCourse');
 const { API } = require('../config/error_config');
 const { returnInfo } = require('../libs/utils')
 class Index {
@@ -24,17 +25,15 @@ class Index {
     ctx.body = result ? returnInfo(API.CHANGE_COURSE_FIELD_SUCCESS) : returnInfo(API.CHANGE_COURSE_FIELD_FAILED);
   }
 
-  /* async changeCourseStatus(ctx, next) {
-    const { id, status } = ctx.request.body;
-    const result = await changeCourseStatus(id, status);
-    ctx.body = result ? returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS) : returnInfo(API.CHANGE_COURSE_STATUS_FAILED);
+  async getSliders(ctx, next) {
+    const data = await getSliderData();
+    ctx.body = data ? returnInfo(API.RETURN_SUCCESS, data) : returnInfo(API.RETURN_FAILED);
   }
 
-  async changeRecomCourseStatus(ctx, next) {
-    const { id, status } = ctx.request.body;
-    const result = await changeRecomCourseStatusData(id, status);
-    ctx.body = result ? returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS) : returnInfo(API.CHANGE_COURSE_STATUS_FAILED);
-  } */
+  async getCollections(ctx, next) {
+    const data = await getCollectionData()
+    ctx.body = data ? returnInfo(API.RETURN_SUCCESS, data) : returnInfo(API.RETURN_FAILED);
+  }
 
   async changeDataStatus(ctx, next) {
     const { id, status, field } = ctx.request.body;
@@ -49,6 +48,9 @@ class Index {
       case 'slider':
         result = await changeSliderStatusData(id, status);
         break;
+      case 'collectionCourse':
+        result = await changeCollectionStatus(id, status)
+        break;
       default:
         ctx.body = returnInfo(API.FIELD_ERROR)
         return;
@@ -56,10 +58,7 @@ class Index {
     ctx.body = result ? returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS) : returnInfo(API.CHANGE_COURSE_STATUS_FAILED);
   }
 
-  async getSliders(ctx, next) {
-    const data = await getSliderData();
-    ctx.body = data ? returnInfo(API.RETURN_SUCCESS, data) : returnInfo(API.RETURN_FAILED);
-  }
+
 }
 
 module.exports = new Index()

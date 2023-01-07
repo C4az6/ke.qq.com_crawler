@@ -14,6 +14,21 @@ class CollectionCourseService {
       return await CollectionCourseModel.create(data);
     }
   }
+
+  async getCollectionData() {
+    return await CollectionCourseModel.findAll({
+      attributes: {
+        exclude: ['posterUrl', 'createdAt', 'updatedAt']
+      }
+    })
+  }
+
+  async changeCollectionStatus(id, status) {
+    const result = await CollectionCourseModel.update({ status }, {
+      where: { id }
+    })
+    return result[0]
+  }
 }
 
 module.exports = new CollectionCourseService();
