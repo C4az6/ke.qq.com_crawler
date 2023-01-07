@@ -3,7 +3,27 @@ const Crawler = require('../libs/crawler'),
 
 Crawler({
   url: crawler.url.course,
-  callback() {
+  async callback() {
+    // 滚动到最底部
+    function autoScroll() {
+      return new Promise((resolve, reject) => {
+        let totalHeight = 0;
+        let distance = 100;
+        let timer = setInterval(() => {
+          let scrollHeight = document.body.scrollHeight;
+          window.scrollBy(0, distance);
+          totalHeight += distance;
+          if (totalHeight >= scrollHeight) {
+            // 页面触底了
+            clearInterval(timer);
+            console.log('running autoScroll!!! ');
+            resolve();
+          }
+        }, 100)
+      })
+    }
+
+    await autoScroll();
     const elements = document.querySelectorAll('.agency-courses-content > .kc-row---UI88rW > .kc-col---OaJWB7'),
       data = [];
     elements.forEach((item, index) => {

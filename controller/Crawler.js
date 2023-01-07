@@ -222,7 +222,6 @@ class Crawler {
   // 爬取课程分类标签
   crawlCourseTab() {
     console.log('爬取课程分类数据.');
-    return
     startProcess({
       path: '../crawlers/courseTab.js',
       async message(data) {
