@@ -1,22 +1,13 @@
 const { getCoursesData } = require('../services/Course');
+const { getCourseFieldData } = require('../services/CourseTab')
 const { API } = require('../config/error_config');
 const { returnInfo } = require('../libs/utils')
 class Index {
+  // 获取所有课程
   async getCourses(ctx, next) {
-    const data = await getCoursesData();
-    ctx.body = data ? returnInfo(API.RETURN_SUCCESS, data) : returnInfo(API.RETURN_FAILED);
-  }
-
-  async getTeacherData(ctx, next) {
-
-  }
-
-  async getCourseDatas(ctx, next) {
-
-  }
-
-  async getTeacherDatas(ctx, next) {
-
+    const courseData = await getCoursesData(),
+      fieldsData = await getCourseFieldData();
+    ctx.body = courseData && fieldsData ? returnInfo(API.RETURN_SUCCESS, { courseData, fieldsData }) : returnInfo(API.RETURN_FAILED);
   }
 }
 

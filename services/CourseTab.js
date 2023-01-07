@@ -14,6 +14,14 @@ class CourseTabService {
       return await CourseTabModel.create(data)
     }
   }
+  // 获取课程分类数据
+  async getCourseFieldData() {
+    return await CourseTabModel.findAll({
+      attributes: {
+        exclude: ['cid', 'createdAt', 'updatedAt']
+      }
+    })
+  }
 }
 
 // 导出实例对象
