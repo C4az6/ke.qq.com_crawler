@@ -23,19 +23,34 @@ class Index {
     ctx.body = result ? returnInfo(API.CHANGE_COURSE_FIELD_SUCCESS) : returnInfo(API.CHANGE_COURSE_FIELD_FAILED);
   }
 
-  async changeCourseStatus(ctx, next) {
-    const { cid, status } = ctx.request.body;
-    const result = await changeCourseStatus(cid, status);
+  /* async changeCourseStatus(ctx, next) {
+    const { id, status } = ctx.request.body;
+    const result = await changeCourseStatus(id, status);
     ctx.body = result ? returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS) : returnInfo(API.CHANGE_COURSE_STATUS_FAILED);
   }
 
   async changeRecomCourseStatus(ctx, next) {
-    const { cid, status } = ctx.request.body;
-    const result = await changeRecomCourseStatusData(cid, status);
+    const { id, status } = ctx.request.body;
+    const result = await changeRecomCourseStatusData(id, status);
+    ctx.body = result ? returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS) : returnInfo(API.CHANGE_COURSE_STATUS_FAILED);
+  } */
+
+  async changeDataStatus(ctx, next) {
+    const { id, status, field } = ctx.request.body;
+    let result = null
+    switch (field) {
+      case 'course':
+        result = await changeCourseStatus(id, status);
+        break;
+      case 'recomCourse':
+        result = await changeRecomCourseStatusData(id, status);
+        break;
+      default:
+        ctx.body = returnInfo(API.FIELD_ERROR)
+        return;
+    }
     ctx.body = result ? returnInfo(API.CHANGE_COURSE_STATUS_SUCCESS) : returnInfo(API.CHANGE_COURSE_STATUS_FAILED);
   }
-
-
 }
 
 module.exports = new Index()
