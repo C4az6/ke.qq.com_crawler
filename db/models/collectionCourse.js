@@ -43,6 +43,12 @@ const CollectionCourse = seq.define('collection_course', {
     comment: "collection course label",
     type: STRING,
     allowNull: true
+  },
+  status: {
+    comment: 'collection course status',
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 

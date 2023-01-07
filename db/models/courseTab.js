@@ -12,6 +12,12 @@ const CourseTab = seq.define('course_tab', {
     comment: 'course tab name',
     type: STRING,
     allowNull: false
+  },
+  status: {
+    comment: 'course tab status',
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 

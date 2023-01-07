@@ -122,7 +122,6 @@ class Crawler {
               console.log("error: ", error);
             }
           }
-          console.log("data: ", data);
         })
 
       },

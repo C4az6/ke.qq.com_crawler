@@ -42,6 +42,12 @@ const Teacher = seq.define('teacher', {
     comment: 'teacher introduction',
     type: TEXT,
     allowNull: false
+  },
+  status: {
+    comment: 'teacher status',
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 

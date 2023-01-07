@@ -11,6 +11,12 @@ const Admin = seq.define('admin', {
     comment: 'crypto user password',
     type: STRING,
     allowNull: false
+  },
+  status: {
+    comment: 'admin account status',
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 

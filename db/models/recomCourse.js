@@ -1,5 +1,4 @@
-const Sequelize = require('sequelize'),
-  seq = require('../connection/mysql_connect'),
+const seq = require('../connection/mysql_connect'),
   { STRING, INT, DECIMAL } = require('../../config/db_type_config')
 
 const RecomCourse = seq.define('recom_course', {
@@ -39,6 +38,12 @@ const RecomCourse = seq.define('recom_course', {
     comment: "course poster image qiniu key",
     type: STRING,
     allowNull: false
+  },
+  status: {
+    comment: "recom course status",
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 

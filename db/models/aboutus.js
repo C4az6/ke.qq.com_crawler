@@ -21,6 +21,12 @@ const Aboutus = seq.define('aboutus', {
   intro: {
     comment: 'introduction',
     type: TEXT
+  },
+  status: {
+    comment: 'aboutus status',
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 

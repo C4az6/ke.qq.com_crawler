@@ -12,6 +12,12 @@ const CourseCategory = seq.define('course_category', {
     comment: 'course category name',
     type: STRING,
     allowNull: false
+  },
+  status: {
+    comment: 'course category status',
+    type: INT,
+    allowNull: false,
+    defaultValue: 1
   }
 })
 
