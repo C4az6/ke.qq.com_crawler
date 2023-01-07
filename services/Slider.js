@@ -27,8 +27,21 @@ class SliderService {
       // 创建数据的过程是异步的
       return await SliderModel.create(data)
     }
+  }
 
+  async getSliderData() {
+    return await SliderModel.findAll({
+      attributes: {
+        exclude: ['imgUrl', 'createdAt', 'updatedAt']
+      }
+    });
+  }
 
+  async changeSliderStatusData(id, status) {
+    const result = await SliderModel.update({ status }, {
+      where: { id }
+    })
+    return result[0]
   }
 }
 
