@@ -19,7 +19,7 @@ class TeacherService {
   async getTeacherData() {
     return await TeacherModel.findAll({
       attributes: {
-        exclude: ['teacherImg', 'createdAt', 'updatedAt']
+        exclude: ['tid', 'teacherImg', 'createdAt', 'updatedAt']
       }
     })
   }

@@ -69,5 +69,15 @@ module.exports = {
       error_code: 20004,
       error_msg: 'field error'
     }
+  },
+  CRAWLER: {
+    CRAWLER_SUCCESS: {
+      error_code: 0,
+      error_msg: '爬取数据成功'
+    },
+    CRAWLER_FAILE: {
+      error_code: 30001,
+      error_msg: '爬取数据失败'
+    }
   }
 }
